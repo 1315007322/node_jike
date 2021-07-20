@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>剪刀石头布</title>
+    <style>
+        .output{
+            background-color: #efefef;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+        }
+        .output p{
+            line-height: 15px;
+        }
+        button{
+            margin: 0 15px;
+            background-color: #999;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="output" id='output'>
+       
+    </div>
+    <div class="btn">
+        <button onclick="play('rock')">石头</button>
+        <button onclick="play('scissor')">剪刀</button>
+        <button onclick="play('paper')">布</button>
+    </div>
+</body>
+<script>
+    let out = document.getElementById('output')
+    function play(playActions){
+        fetch(`http://localhost:3000/game?action=${playActions}`)
+        .then(res => res.text())
+        .then(res => {
+            out.innerHTML += `<p>${res}</p>`
+        })
+    }
+
+</script>
+
+</html>
